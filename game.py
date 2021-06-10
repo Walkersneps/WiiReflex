@@ -1,22 +1,3 @@
-'''
-import arcade as a
-
-a.open_window(600, 600, "Finestra Prova")
-a.set_background_color(a.csscolor.SKY_BLUE)
-
-a.start_render()
-
-
-a.draw_lrtb_rectangle_filled(0, 599, 300, 0, a.csscolor.GREEN)
-
-a.finish_render()
-
-
-
-a.run()
-'''
-
-
 import sys, pygame
 pygame.init()
 
