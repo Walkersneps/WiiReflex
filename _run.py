@@ -1,11 +1,11 @@
 import pygame as pg
 import cwiid
-import esegui_calibrazione
-import configurazioni
 import time
-import colors, wii, coordinate
+import colors, wii, coordinate, configurazioni
+import esegui_calibrazione, riflessi
 
-print("-o-o-o- WiiReflex -o-o-o-")
+
+print("\n\n-o-o-o- WiiReflex -o-o-o-")
 
 print("Connessione WiiMote...")
 wm = cwiid.Wiimote()
@@ -26,14 +26,19 @@ print(parametri)
 print("    eseguita!\n")
 
 print("## Caricamento Assets PyGame")
-#sprite_puntatore = pg.image.load('sprites/puntatore.png')
-sprite_puntatore = pg.image.load('sprites/crosshair_1.png')
-puntatore_hitbox = sprite_puntatore.get_rect()
+#puntatore_sprite = pg.image.load('sprites/puntatore.png')
+puntatore_sprite = pg.image.load('sprites/crosshair_1.png')
+puntatore_hitbox = puntatore_sprite.get_rect()
 pg.display.set_caption('WiiReflex')
 print("    fatto!")
 
 new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
 
+
+riflessi.gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox)
+
+
+"""
 while 1:
     for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -47,6 +52,7 @@ while 1:
     puntatore_hitbox.move_ip(delta_x, delta_y)
 
     screen.fill(colors.BLACK)
-    screen.blit(sprite_puntatore, puntatore_hitbox)
+    screen.blit(puntatore_sprite, puntatore_hitbox)
     pg.display.flip()
 
+"""
