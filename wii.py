@@ -68,6 +68,7 @@ def next_coords(wm: cwiid.Wiimote) -> (int, int):
         return get_wii_coords(sorgenti)
     elif areNone == 4:
         print("\nERRORE: Bad Polling!!")
+        print("Rimetti il Polar H9 che non ti sento il battito! xD")
         return sorgenti
     else:
         return get_best_coords(sorgenti)
