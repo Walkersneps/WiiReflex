@@ -66,6 +66,23 @@ def esegui_calibrazione(screen, wiimote: cwiid.Wiimote) -> np.ndarray:
     return coordinate.calibrazione(wii_coords, screen_coords)
     
 
+def salva_parametri(parametri):
+    """Salva su file gli otto parametri di calibrazione
+    """
+
+    print("Salvo parametri di calibrazione in " + configurazioni.calibrazione_savepath + " ...")
+    np.save(configurazioni.calibrazione_savepath, parametri)
+    print("  ... fatto!\n")
+
+
+def leggi_parametri() -> np.ndarray:
+    """Leggi da un file gli otto parametri di calibrazione
+    """
+
+    print("Recupero dal salvataggio i parametri dell'ultima calibrazione...")
+    p = np.load(configurazioni.calibrazione_savepath)
+    print("  ... fatto!\n")
+    return p
 
 
 

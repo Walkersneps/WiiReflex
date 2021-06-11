@@ -17,6 +17,8 @@ cursore_stroke = 5
 cursore_raggio = 50
 cursore_raggio_inner = 5
 
+calibrazione_savepath = 'calib.npy'
+
 
 
 # -o-o-o-o-o-o-o-o-o-o-o-o-o-
