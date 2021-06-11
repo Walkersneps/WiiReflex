@@ -35,5 +35,32 @@ def calibrazione(wii_coords, screen_coords) -> np.ndarray:
     return h
 
 
-def wii_to_screen(wii_coords, screen_res) --> (screen_x, screen_y):
-    A_riga_1 = (wii_coords[0], wii_coords[1], 1, 0, 0, 0, 0, -scr)
+def wii_to_screen(wii_coords, parametri) -> (int, int):
+    """Converte le coordinate del WiiMote in coordinate su schermo
+
+    Parameters
+    ----------
+    wii_coords: (int, int)
+        tupla (x, y) delle coordinate rilevate dal WiiMote
+    parametri: numpy.ndarray(8)
+        parametri della calibrazione del setup di rilevamento
+    """
+
+    screen_x = ( (parametri[0] * wii_coords[0]) + (parametri[1] * wii_coords[1]) + parametri[2] ) / ( (parametri[6] * wii_coords[0]) + (parametri[7] * wii_coords[1]) + 1 )
+    screen_y = ( (parametri[3] * wii_coords[0]) + (parametri[4] * wii_coords[1]) + parametri[5] ) / ( (parametri[6] * wii_coords[0]) + (parametri[7] * wii_coords[1]) + 1 )
+    return ( int(screen_x), int(screen_y) )
+
+
+
+"""Valori esempio
+screen = np.array([ [40, 40],
+                    [1326, 40],
+                    [1326, 728],
+                    [40, 728]])
+
+wii = np.array([ [57, 511],
+                 [712, 368],
+                 [752, 8],
+                 [31, 21]])
+
+"""
