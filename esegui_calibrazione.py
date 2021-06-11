@@ -26,7 +26,7 @@ def waitAngolo(screen, wiimote: cwiid.Wiimote, angolo) -> (int, int):
                 sys.exit()
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
-                    print("spazio premuto!")
+                    print("\nSpazio premuto!")
                     sorgenti = wii.poll(wiimote)
                     if sorgenti.count(None) != len(sorgenti):
                         return wii.get_best_coords(sorgenti)
@@ -34,7 +34,6 @@ def waitAngolo(screen, wiimote: cwiid.Wiimote, angolo) -> (int, int):
                         print("Riprova")
 
         screen.fill(colors.BLACK)
-        
         if angolo == 1:
             pg.draw.circle(screen, colors.CYAN, screen_upper_left, radius_big, stroke)
             pg.draw.circle(screen, colors.CYAN, screen_upper_left, radius_small, stroke)
@@ -47,10 +46,8 @@ def waitAngolo(screen, wiimote: cwiid.Wiimote, angolo) -> (int, int):
         elif angolo == 4:
             pg.draw.circle(screen,colors.CYAN, screen_lower_left, radius_big, stroke)
             pg.draw.circle(screen,colors.CYAN, screen_lower_left, radius_small, stroke)
-
         pg.display.flip()
         
-
 
 
 
@@ -59,39 +56,10 @@ def esegui_calibrazione(screen, wiimote: cwiid.Wiimote) -> np.ndarray:
     Ritorna gli otto parametri di conversione
     """
 
-    # Angolo 1
-    #screen.fill(colors.BLACK)
-   # pg.draw.circle(screen, colors.CYAN, screen_upper_left, radius_big, stroke)
-   # pg.draw.circle(screen, colors.CYAN, screen_upper_left, radius_small, stroke)
-   # display.flip()
-    wii_upper_left = waitAngolo(screen, wiimote, 1)
-
-    # Angolo 2
-    """
-    screen.fill(colors.BLACK)
-    pg.draw.circle(screen,colors.CYAN, screen_upper_right, radius_big, stroke)
-    pg.draw.circle(screen,colors.CYAN, screen_upper_right, radius_small, stroke)
-    display.flip()
-    """
-    wii_upper_right = waitAngolo(screen, wiimote, 2)
-
-    # Angolo 3
-    """
-    screen.fill(colors.BLACK)
-    pg.draw.circle(screen,colors.CYAN, screen_lower_right, radius_big, stroke)
-    pg.draw.circle(screen,colors.CYAN, screen_lower_right, radius_small, stroke)
-    display.flip()
-    """
-    wii_lower_right = waitAngolo(screen, wiimote, 3)
-
-    # Angolo 4
-    """
-    screen.fill(colors.BLACK)
-    pg.draw.circle(screen,colors.CYAN, screen_lower_left, radius_big, stroke)
-    pg.draw.circle(screen,colors.CYAN, screen_lower_left, radius_small, stroke)
-    display.flip()
-    """
-    wii_lower_left = waitAngolo(screen, wiimote, 4)
+    wii_upper_left = waitAngolo(screen, wiimote, 1) # Angolo 1
+    wii_upper_right = waitAngolo(screen, wiimote, 2) # Angolo 2
+    wii_lower_right = waitAngolo(screen, wiimote, 3) # Angolo 3
+    wii_lower_left = waitAngolo(screen, wiimote, 4) # Angolo 4
 
     wii_coords = [wii_upper_left, wii_upper_right, wii_lower_left, wii_lower_right]
 
