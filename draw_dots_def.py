@@ -13,6 +13,9 @@ import pygame as pg
 res_x = 900
 res_y = 640
 off_set = 100
+radius_big = 50
+radius_small = 5
+stroke = 5
 
 
 # In[20]:
@@ -31,17 +34,17 @@ BLUE = (0,0,255)
 CYAN = (0,255,255)
 
 #ALTO SX
-pg.draw.circle(screen, CYAN, (off_set, off_set), 50, 5)
-pg.draw.circle(screen, CYAN, (off_set, off_set), 5, 5)
+pg.draw.circle(screen, CYAN, (off_set, off_set), radius_big, stroke)
+pg.draw.circle(screen, CYAN, (off_set, off_set), radius_small, stroke)
 
-pg.draw.circle(screen, CYAN, (res_x-off_set, off_set), 50, 5)
-pg.draw.circle(screen, CYAN, (res_x-off_set, off_set), 5, 5)
+pg.draw.circle(screen, CYAN, (res_x-off_set, off_set), radius_big, stroke)
+pg.draw.circle(screen, CYAN, (res_x-off_set, off_set), radius_small, stroke)
 
-pg.draw.circle(screen, CYAN, (res_x-off_set, res_y-off_set), 50, 5)
-pg.draw.circle(screen, CYAN, (res_x-off_set, res_y-off_set), 5, 5)
+pg.draw.circle(screen, CYAN, (res_x-off_set, res_y-off_set), radius_big, stroke)
+pg.draw.circle(screen, CYAN, (res_x-off_set, res_y-off_set), radius_small, stroke)
 
-pg.draw.circle(screen, CYAN, (off_set, res_y-off_set), 50, 5)
-pg.draw.circle(screen, CYAN, (off_set, res_y-off_set), 5, 5)
+pg.draw.circle(screen, CYAN, (off_set, res_y-off_set), radius_big, stroke)
+pg.draw.circle(screen, CYAN, (off_set, res_y-off_set), radius_small, stroke)
 
 pg.display.flip()
 

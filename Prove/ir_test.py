@@ -2,7 +2,7 @@ import cwiid
 import time
 
 def dry(w: cwiid.Wiimote):
-    print(wm.state['ir_src'])
+    print(w.state['ir_src'])
     for sorg in w.state['ir_src']: # per ogni sorgente IR letta dal wiimote
         if sorg is not None:
             posix = sorg['pos'] # tupla coordinate

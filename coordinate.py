@@ -1,9 +1,6 @@
 import numpy as np
 from scipy.linalg import solve
 
-wii_max_x = 1024
-wii_max_y = 768
-
 
 def calibrazione(wii_coords, screen_coords) -> np.ndarray:
     """Calcola gli 8 parametri di conversione coordinate

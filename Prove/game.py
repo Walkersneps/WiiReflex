@@ -75,8 +75,8 @@ while 1:
     #   asse 3: dimensione 3 --> RGB
 
     # Disegno curva sinusoidale
-    sine_surface = pygame.surfarray.make_surface(pxls)
-    screen.blit(sine_surface, (0, 0))
+    #sine_surface = pygame.surfarray.make_surface(pxls)
+    #screen.blit(sine_surface, (0, 0))
 
     # mostro quello che ho disegnato
     pygame.display.flip()
