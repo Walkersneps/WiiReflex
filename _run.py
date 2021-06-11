@@ -27,7 +27,7 @@ print("    eseguita!\n")
 
 print("## Caricamento Assets PyGame")
 #puntatore_sprite = pg.image.load('sprites/puntatore.png')
-puntatore_sprite = pg.image.load('sprites/crosshair_1.png')
+puntatore_sprite = pg.image.load('sprites/MIRINO_BIANCO.PNG')
 puntatore_hitbox = puntatore_sprite.get_rect()
 pg.display.set_caption('WiiReflex')
 print("    fatto!")

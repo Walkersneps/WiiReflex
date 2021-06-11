@@ -1,7 +1,7 @@
 import time
 import pygame as pg
 import random as rd
-import wii, configurazioni, colors
+import wii, configurazioni, colors, coordinate
 from datetime import datetime as time
 from datetime import timedelta
 
@@ -12,7 +12,6 @@ target_raggio = 50
     
 
 def gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox):
-    showing = False 
 
     for i in range(configurazioni.riflessi_numero_runs):
         new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
@@ -24,7 +23,7 @@ def gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox):
 
         # Mostro cursore mentre aspetto che appaia il target
         t_start_wait = time.now()
-        while (time.now() - t_start_wait) > t_wait:
+        while (time.now() - t_start_wait) < t_wait:
             for event in pg.event.get():
                     if event.type == pg.QUIT:
                         sys.exit()
@@ -47,17 +46,17 @@ def gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox):
                     if event.type == pg.QUIT:
                         sys.exit()
             
-            pg.draw.circle(screen, colors.GREEN, (target_x, target_y), target_raggio)
-
             old_x, old_y = new_x, new_y
             new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
             delta_x = new_x - old_x
             delta_y = new_y - old_y
 
-            puntatore_hitbox.move_ip(delta_x, delta_y)
+            #puntatore_hitbox.move_ip(delta_x, delta_y)
 
             screen.fill(colors.BLACK)
-            screen.blit(puntatore_sprite, puntatore_hitbox)
+            pg.draw.circle(screen, colors.GREEN, (target_x, target_y), target_raggio)
+            pg.draw.circle(screen, colors.WHITE, (new_x, new_y), target_raggio)
+            #screen.blit(puntatore_sprite, puntatore_hitbox)
             pg.display.flip()
 
             if (target_x - target_raggio) <= new_x <= (target_x + target_raggio) and (target_y - target_raggio) <= new_y <= (target_y + target_raggio):
