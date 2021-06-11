@@ -37,7 +37,7 @@ newx, newy = pygame.mouse.get_pos()
 
 
 # Calcolo pixel per il seno
-xs = np.linspace(0, 2*pi, width)
+xs = np.linspace(0, 4*pi, width)
 hor_pxs = np.linspace(0, width - 1, width).astype(int)
 sinpxls = ((((height-1)/2) * np.sin(xs))+((height-1)/2)).astype(int)
 pxls = f_to_pixels(xs, sinpxls, height, (255, 0, 0))
