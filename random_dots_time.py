@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[1]:
 
 
 import pygame as pg
 import random as rd
 
 
-# In[5]:
+# In[2]:
 
 
 res_x = 900
@@ -18,7 +18,7 @@ locations = []
 GREEN = (0,255,0)
 
 
-# In[7]:
+# In[3]:
 
 
 pg.init()
@@ -29,13 +29,15 @@ for i in range(10):
     x_dot = rd.randint(raggio, res_x-raggio)
     y_dot = rd.randint(raggio, res_y-raggio)
     locations.append((x_dot, y_dot))
+    t_random = rd.randint(500, 2000)
 
 for locate in locations:
     pg.draw.circle(screen, GREEN, locate, 10)
     pg.display.update()
-    pg.time.delay(1000)
+    pg.time.delay(t_random)
 
 pg.display.flip()
+exit()
 
 
 # In[ ]:
