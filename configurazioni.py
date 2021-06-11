@@ -4,6 +4,16 @@ wii_max_y = 768
 screen_res_x = 1900
 screen_res_y = 1060
 
+polling_timeout = 15 # sec
+polling_f_sample = 100 # Hz --- fps (frames/sec)
 
+update_frequency = 70 # Hz --- fps (frames/sec)
+
+
+
+# -o-o-o-o-o-o-o-o-o-o-o-o-o-
 
 screenSize = (screen_res_x, screen_res_y)
+polling_max_samples = polling_timeout * polling_f_sample
+polling_T_sample = 1 / polling_f_sample
+update_period = 1 / update_frequency

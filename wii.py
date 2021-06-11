@@ -1,11 +1,15 @@
 import cwiid
 import numpy as np
+import time
+import configurazioni
+
 
 def poll_full(wm: cwiid.Wiimote) -> list:
     """Recupera dati dal sensore IR dal WiiMote
     Anche sorgenti non presenti
     """
     return wm.state['ir_src']
+
 
 def poll(wm: cwiid.Wiimote) -> list:
     """Recupera dati delle sorgenti IR rilevate dal WiiMote
@@ -17,6 +21,7 @@ def poll(wm: cwiid.Wiimote) -> list:
             dati.append(sorgente)
 
     return dati
+
 
 def get_wii_coords(ir_source_data) -> (int, int):
     """Ritorna le coordinate Wii della sorgente IR
@@ -43,3 +48,33 @@ def get_best_coords(lista_sorgenti):
 
     return get_wii_coords(lista_sorgenti[np.argmax(sizes)])
 
+
+def next_coords(wm: cwiid.Wiimote) -> (int, int):
+    """Esegue polling finchè non trova almeno una coppia di coordinate.
+    Se ce ne sono di più, ritorna la sorgente più grande
+    """
+
+    sorgenti = list()
+    areNone = 0
+    for _ in range(configurazioni.polling_max_samples):
+        sorgenti = poll(wm)
+        areNone = sorgenti.count(None)
+        if areNone != len(sorgenti):
+            break
+        else:
+            time.sleep(configurazioni.polling_T_sample)
+
+    if areNone == 3:
+        return get_wii_coords(sorgenti)
+    elif areNone == 4:
+        print("\nERRORE: Bad Polling!!")
+        return sorgenti
+    else:
+        return get_best_coords(sorgenti)
+        
+
+
+def rumble_alert(wm: cwiid.Wiimote):
+    wm.rumble = True
+    time.sleep(0.5)
+    wm.rumble = False
