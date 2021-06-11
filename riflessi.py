@@ -1,7 +1,7 @@
-import time
+import sys
 import pygame as pg
 import random as rd
-import wii, configurazioni, colors, coordinate
+import wii, configurazioni, colors, coordinate, grafica
 from datetime import datetime as time
 from datetime import timedelta
 
@@ -11,7 +11,7 @@ target_raggio = 50
 
     
 
-def gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox):
+def gioco_riflessi(screen, wm, parametri):
 
     for i in range(configurazioni.riflessi_numero_runs):
         new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
@@ -28,15 +28,8 @@ def gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox):
                     if event.type == pg.QUIT:
                         sys.exit()
 
-            old_x, old_y = new_x, new_y
-            new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
-            delta_x = new_x - old_x
-            delta_y = new_y - old_y
-
-            puntatore_hitbox.move_ip(delta_x, delta_y)
-
             screen.fill(colors.BLACK)
-            screen.blit(puntatore_sprite, puntatore_hitbox)
+            grafica.draw_cursore(screen, coordinate.wii_to_screen(wii.next_coords(wm), parametri), colors.WHITE)
             pg.display.flip()
 
         # Adesso sono passati t_wait secondi di vuoto --> mostro anche il target
@@ -46,17 +39,21 @@ def gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox):
                     if event.type == pg.QUIT:
                         sys.exit()
             
+            """
             old_x, old_y = new_x, new_y
             new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
             delta_x = new_x - old_x
             delta_y = new_y - old_y
+            """
+
+            new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
 
             #puntatore_hitbox.move_ip(delta_x, delta_y)
 
             screen.fill(colors.BLACK)
             pg.draw.circle(screen, colors.GREEN, (target_x, target_y), target_raggio)
-            pg.draw.circle(screen, colors.WHITE, (new_x, new_y), target_raggio)
-            #screen.blit(puntatore_sprite, puntatore_hitbox)
+            #pg.draw.circle(screen, colors.WHITE, (new_x, new_y), target_raggio)
+            grafica.draw_cursore(screen, (new_x, new_y), colors.WHITE)
             pg.display.flip()
 
             if (target_x - target_raggio) <= new_x <= (target_x + target_raggio) and (target_y - target_raggio) <= new_y <= (target_y + target_raggio):

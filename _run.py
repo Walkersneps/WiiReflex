@@ -26,16 +26,15 @@ print(parametri)
 print("    eseguita!\n")
 
 print("## Caricamento Assets PyGame")
-#puntatore_sprite = pg.image.load('sprites/puntatore.png')
-puntatore_sprite = pg.image.load('sprites/MIRINO_BIANCO.PNG')
-puntatore_hitbox = puntatore_sprite.get_rect()
+#puntatore_sprite = pg.image.load('sprites/MIRINO_BIANCO.PNG')
+#puntatore_hitbox = puntatore_sprite.get_rect()
 pg.display.set_caption('WiiReflex')
 print("    fatto!")
 
-new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
+#new_x, new_y = coordinate.wii_to_screen(wii.next_coords(wm), parametri)
 
 
-riflessi.gioco_riflessi(screen, wm, parametri, puntatore_sprite, puntatore_hitbox)
+riflessi.gioco_riflessi(screen, wm, parametri)
 
 
 """

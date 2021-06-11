@@ -13,6 +13,10 @@ riflessi_numero_runs = 7
 riflessi_min_wait = 500
 riflessi_max_wait = 2000
 
+cursore_stroke = 5
+cursore_raggio = 50
+cursore_raggio_inner = 5
+
 
 
 # -o-o-o-o-o-o-o-o-o-o-o-o-o-
