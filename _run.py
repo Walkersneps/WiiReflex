@@ -2,7 +2,7 @@ import pygame as pg
 import cwiid
 import time
 import colors, wii, coordinate, configurazioni
-import esegui_calibrazione, riflessi
+import calibrazione, riflessi
 
 
 print("\n\n-o-o-o- WiiReflex -o-o-o-")
@@ -21,7 +21,7 @@ screen = pg.display.set_mode((configurazioni.screen_res_x, configurazioni.screen
 
 print("## Calibrazione")
 pg.display.set_caption('CALIBRAZIONE')
-parametri = esegui_calibrazione.esegui_calibrazione(screen, wm)
+parametri = calibrazione.esegui_calibrazione(screen, wm)
 print(parametri)
 print("    eseguita!\n")
 
