@@ -49,6 +49,22 @@ def waitAngolo(screen, wiimote: cwiid.Wiimote, angolo) -> (int, int):
         pg.display.flip()
         
 
+def valutaCalibrazione(coords):
+    delta_x_up = coords[1][0] - coords[0][0]
+    delta_x_low = coords[3][0] - coords[2][0]
+    delta_y_left = coords[0][1] - coords[2][1]
+    delta_y_right = coords[1][1] - coords[3][1]
+
+    deltas = (delta_x_up, delta_x_low, delta_y_left, delta_y_right)
+
+    for d in deltas:
+        if d < 0:
+            print("Calibrazione sospetta: angoli invertiti")
+            break
+    
+    if delta_x_up < configurazioni.calibrazione_minDist_x or delta_x_low < configurazioni.calibrazione_minDist_x or delta_y_left < configurazioni.calibrazione_minDist_y or delta_y_right < configurazioni.calibrazione_minDist_y:
+        print("Calibrazione sospetta: distanze troppo corte")
+
 
 
 def esegui_calibrazione(screen, wiimote: cwiid.Wiimote) -> np.ndarray:
@@ -62,6 +78,8 @@ def esegui_calibrazione(screen, wiimote: cwiid.Wiimote) -> np.ndarray:
     wii_lower_left = waitAngolo(screen, wiimote, 4) # Angolo 4
 
     wii_coords = [wii_upper_left, wii_upper_right, wii_lower_left, wii_lower_right]
+
+    valutaCalibrazione(wii_coords)
 
     return coordinate.calibrazione(wii_coords, screen_coords)
     

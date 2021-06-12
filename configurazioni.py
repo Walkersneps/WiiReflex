@@ -18,6 +18,8 @@ cursore_raggio = 50
 cursore_raggio_inner = 5
 
 calibrazione_savepath = 'calib.npy'
+calibrazione_minDist_x = (3/5) * wii_max_x
+calibrazione_minDist_y = (3/5) * wii_max_y
 
 menu_nbtn = 6
 menu_offset = 50

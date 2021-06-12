@@ -2,7 +2,7 @@ import cwiid
 import numpy as np
 import time
 import configurazioni
-
+import wii # !! serve anche se non sembra (sennò destroyerror)
 
 def poll_full(wm: cwiid.Wiimote) -> list:
     """Recupera dati dal sensore IR dal WiiMote
