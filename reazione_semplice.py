@@ -68,7 +68,7 @@ while 1:
                     textRect.center = (w // 2, h // 2)
                     interrotto = True
                 if tempo_riflesso_ms > 1055:
-                    text = font.render("La tua eta di reazione è superiore ai 90 anni!", True ,green, blue)
+                    text = font.render("La tua età di reazione è superiore ai 90 anni!", True ,green, blue)
                     textRect = text.get_rect()
                     textRect.center = (w // 2, h // 2)
                     interrotto = True
