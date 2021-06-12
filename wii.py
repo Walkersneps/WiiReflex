@@ -1,7 +1,7 @@
 import cwiid
 import numpy as np
 import time
-import configurazioni
+import configurazioni, wii
 
 
 def poll_full(wm: cwiid.Wiimote) -> list:
@@ -79,3 +79,30 @@ def rumble_alert(wm: cwiid.Wiimote):
     wm.rumble = True
     time.sleep(0.5)
     wm.rumble = False
+
+
+
+class persistente:
+    def __init__(self):
+        self.parametri = None
+        self.tele = None
+
+    def connect(self):
+        try:
+            print("Connessione WiiMote...")
+            self.tele = cwiid.Wiimote()
+            print("Connessione effettuata!")
+            self.tele.rpt_mode = cwiid.RPT_IR
+            self.tele.led = 5
+            wii.rumble_alert(self.tele)
+        except RuntimeError:
+            pass
+    
+    def set_params(self, parametri):
+        self.parametri = parametri
+
+    def g_wm(self) -> cwiid.Wiimote:
+        return self.tele
+
+    def g_params(self):
+        return self.parametri
