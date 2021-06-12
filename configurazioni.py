@@ -19,6 +19,9 @@ cursore_raggio_inner = 5
 
 calibrazione_savepath = 'calib.npy'
 
+menu_nbtn = 6
+menu_offset = 50
+
 
 
 # -o-o-o-o-o-o-o-o-o-o-o-o-o-
