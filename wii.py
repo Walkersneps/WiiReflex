@@ -1,7 +1,7 @@
 import cwiid
 import numpy as np
 import time
-import configurazioni, wii
+import configurazioni
 
 
 def poll_full(wm: cwiid.Wiimote) -> list:
