@@ -3,15 +3,16 @@ from pygame.locals import*
 import sys
 import datetime
 import random as rd
+import configurazioni
 
 pygame.init()
-img = pygame.image.load('warning.jpg')
+img = pygame.image.load('sprites/warning.jpg')
 
 black = (0, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 128)
-w = 1200
-h = 900
+w = configurazioni.screen_res_x
+h = configurazioni.screen_res_y
 
 #grafico età e funzione interpolazione
 import matplotlib.pyplot as plt
@@ -40,6 +41,7 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 def gioco_reazione_semplice(screen):
     screen.fill(black)
     interrotto = False
+    readyToExit = False
 
     t_start = datetime.datetime.now()
     while (datetime.datetime.now() - t_start) < t_wait: 
@@ -63,6 +65,10 @@ def gioco_reazione_semplice(screen):
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
+
+                    if readyToExit:
+                        return
+
                     tempo_riflesso = datetime.datetime.now() - t_start
                     tempo_riflesso_ms= int(tempo_riflesso / datetime.timedelta(milliseconds=1))
 
@@ -71,18 +77,21 @@ def gioco_reazione_semplice(screen):
                         textRect = text.get_rect()
                         textRect.center = (w // 2, h // 2)
                         interrotto = True
-                    if tempo_riflesso_ms > 1055:
+                        readyToExit = True
+                    elif tempo_riflesso_ms > 1055:
                         text = font.render("La tua età di reazione è superiore ai 90 anni!", True ,green, blue)
                         textRect = text.get_rect()
                         textRect.center = (w // 2, h // 2)
                         interrotto = True
-                    if tempo_riflesso_ms >= 296 and tempo_riflesso_ms <= 1055 :
+                        readyToExit = True
+                    elif tempo_riflesso_ms >= 296 and tempo_riflesso_ms <= 1055 :
                         età_riflesso = int(f(tempo_riflesso_ms))
                         testo = "la tua età di reazione è {} anni! ({} ms)".format(età_riflesso, tempo_riflesso_ms)
                         text = font.render(testo, True ,green, blue)
                         textRect = text.get_rect()
                         textRect.center = (w // 2, h // 2)
                         interrotto = True
+                        readyToExit = True
                     
 
 
