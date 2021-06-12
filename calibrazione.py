@@ -62,7 +62,7 @@ def valutaCalibrazione(coords):
             print("Calibrazione sospetta: angoli invertiti")
             break
     
-    if delta_x_up < configurazioni.calibrazione_minDist_x or delta_x_low < configurazioni.calibrazione_minDist_x or delta_y_left < configurazioni.calibrazione_minDist_y or delta_y_right < configurazioni.calibrazione_minDist_y:
+    if abs(delta_x_up) < configurazioni.calibrazione_minDist_x or abs(delta_x_low) < configurazioni.calibrazione_minDist_x or abs(delta_y_left) < configurazioni.calibrazione_minDist_y or abs(delta_y_right) < configurazioni.calibrazione_minDist_y:
         print("Calibrazione sospetta: distanze troppo corte")
 
 

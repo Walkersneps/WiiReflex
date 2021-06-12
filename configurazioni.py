@@ -9,9 +9,10 @@ polling_f_sample = 100 # Hz --- fps (frames/sec)
 
 update_frequency = 70 # Hz --- fps (frames/sec)
 
-riflessi_numero_runs = 7
+riflessi_numero_runs = 5
 riflessi_min_wait = 500
 riflessi_max_wait = 2000
+riflessi_savepath = 'riflessi_data.npy'
 
 cursore_stroke = 5
 cursore_raggio = 50

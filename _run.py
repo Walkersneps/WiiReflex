@@ -1,11 +1,13 @@
 import pygame as pg
 import pygame_menu as pgmenu
 import numpy as np
+#import pyedflib
 import colors, wii
 import configurazioni as cfg
 import calibrazione, riflessi, paziente
 
 wm = wii.persistente()
+#edfw = pyedflib.EdfWriter('dati_paziente.edf', 2)
 
 def fun_connessione_wiimote(persistente):
     pg.display.set_caption('WiiReflex - Connessione...')
@@ -45,11 +47,24 @@ def fun_test(persistente):
 
 
 def fun_riflessi1(screen, persistente):
+    #riflessi.gioco_riflessi(screen, persistente.tele, persistente.parametri, edfw)
     riflessi.gioco_riflessi(screen, persistente.tele, persistente.parametri)
 
 
 def open_link(*args) -> None:
     link: 'pygame_menu.widgets.MenuLink' = args[-1]
+    link.open()
+
+def open_link_andPaziente(*args) -> None:
+    link: 'pygame_menu.widgets.MenuLink' = args[-1]
+    #paz: 'paziente.persona' = args[-2]
+
+    """
+    edfw.setEquipment("WiiReflex")
+    edfw.setGender(paz.sesso)
+    edfw.setPatientName(paz.nome)
+    """
+
     link.open()
 
 
@@ -82,12 +97,12 @@ mainmenu.add.button("Salva Calibrazione", fun_save_params, wm)
 
 
 pzt = paziente.persona()
-menu_paziente.add.text_input("Nome: ", input_underline='_', onreturn=pzt.salva_nome)
-menu_paziente.add.text_input("Cognome: ", input_underline='_', onreturn=pzt.salva_cognome)
+menu_paziente.add.text_input("Nome e Cognome: ", input_underline='_', onreturn=pzt.salva_nome)
+#menu_paziente.add.text_input("Cognome: ", input_underline='_', onreturn=pzt.salva_cognome)
 menu_paziente.add.text_input("Età: ", input_underline='_', input_type=pgmenu.locals.INPUT_INT, onreturn=pzt.salva_eta)
 menu_paziente.add.dropselect("Sesso: ", [("N/S", 0), ("F", 1), ("M", 2)], onchange=pzt.salva_sesso)
-menu_paziente.add.button("Vai!", open_link, "lala", link_toGiochi)
-
+#menu_paziente.add.button("Vai!", open_link, pzt, link_toGiochi)
+menu_paziente.add.button("Vai!", open_link, "lalal", link_toGiochi)
 
 menu_giochi.add.button("Riflesso Semplice", fun_riflessi1, screen, wm)
 
