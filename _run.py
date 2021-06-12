@@ -4,7 +4,7 @@ import numpy as np
 #import pyedflib
 import colors, wii
 import configurazioni as cfg
-import calibrazione, riflessi, paziente
+import calibrazione, riflessi, reazione_semplice, paziente
 
 wm = wii.persistente()
 #edfw = pyedflib.EdfWriter('dati_paziente.edf', 2)
@@ -49,6 +49,9 @@ def fun_test(persistente):
 def fun_riflessi1(screen, persistente):
     #riflessi.gioco_riflessi(screen, persistente.tele, persistente.parametri, edfw)
     riflessi.gioco_riflessi(screen, persistente.tele, persistente.parametri)
+
+def fun_riflesso_semplice(screen):
+    reazione_semplice.gioco_reazione_semplice(screen)
 
 
 def open_link(*args) -> None:
@@ -104,7 +107,8 @@ menu_paziente.add.dropselect("Sesso: ", [("N/S", 0), ("F", 1), ("M", 2)], onchan
 #menu_paziente.add.button("Vai!", open_link, pzt, link_toGiochi)
 menu_paziente.add.button("Vai!", open_link, "lalal", link_toGiochi)
 
-menu_giochi.add.button("Riflesso Semplice", fun_riflessi1, screen, wm)
+menu_giochi.add.button("Riflessi Wii", fun_riflessi1, screen, wm)
+menu_giochi.add.button("Riflesso Semplice", fun_riflesso_semplice, screen)
 
 pg.display.set_caption('WiiReflex - Menu Principale')
 mainmenu.mainloop(screen)
