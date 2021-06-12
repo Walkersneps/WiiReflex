@@ -5,7 +5,7 @@ import datetime
 import random as rd
 
 pygame.init()
-img = pygame.image.load('santa_bazinga4.png')
+img = pygame.image.load('warning.jpg')
 
 black = (0, 0, 0)
 green = (0, 255, 0)
